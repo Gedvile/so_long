@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/22 18:14:33 by gklimasa         ###   ########.fr       */
+/*   Created: 2024/02/26 15:31:25 by gklimasa          #+#    #+#             */
+/*   Updated: 2024/03/17 02:45:41 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strrchr(const char *s, int c)
 {
-	ft_printf("LETS DO THIS!\n");
-	return (0);
+	const char	*foundc;
+
+	foundc = 0;
+	while (*s != '\0')
+	{
+		if (*s == (unsigned char)c)
+			foundc = s;
+		s++;
+	}
+	if (*s == c)
+		foundc = s;
+	return ((char *)foundc);
 }

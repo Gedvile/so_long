@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/22 18:14:33 by gklimasa         ###   ########.fr       */
+/*   Created: 2024/07/22 18:29:26 by gklimasa          #+#    #+#             */
+/*   Updated: 2024/07/22 18:29:32 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
-int	main(void)
-{
-	ft_printf("LETS DO THIS!\n");
-	return (0);
-}
+# include "libft/libft.h"
+
+
+
+
+#endif

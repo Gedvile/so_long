@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/22 18:14:33 by gklimasa         ###   ########.fr       */
+/*   Created: 2024/03/04 10:23:05 by gklimasa          #+#    #+#             */
+/*   Updated: 2024/03/17 01:01:07 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(void)
+/*
+Params:
+	c: The character to output.
+	fd: The file descriptor on which to write.
+Return:
+	None
+Ext func:
+	write
+Descr:
+	Outputs the character ’c’ to the given file descriptor.
+ */
+void	ft_putchar_fd(char c, int fd)
 {
-	ft_printf("LETS DO THIS!\n");
-	return (0);
+	write(fd, &c, 1);
 }

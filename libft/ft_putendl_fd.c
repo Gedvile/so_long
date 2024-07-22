@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/22 18:14:33 by gklimasa         ###   ########.fr       */
+/*   Created: 2024/03/04 10:25:33 by gklimasa          #+#    #+#             */
+/*   Updated: 2024/03/17 01:01:12 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(void)
+/*
+Params:
+	s: The string to output.
+	fd: The file descriptor on which to write.
+Return:
+	None
+Ext func:
+	write
+Descr:
+	Outputs the string ’s’ to the given file descriptor followed by a newline.
+ */
+void	ft_putendl_fd(char *s, int fd)
 {
-	ft_printf("LETS DO THIS!\n");
-	return (0);
+	if (s)
+		write(fd, s, ft_strlen(s));
+	write(fd, &"\n", 1);
 }
