@@ -37,7 +37,7 @@ int	main(void)
 	t_data	img;
 	int		i;
 
-	ft_printf("LETS DO THIS\n");
+	ft_printf("LETS DO THIS!!!\n");
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 600, 300, "Hello world!");
 	img.img = mlx_new_image(mlx, 600, 300);

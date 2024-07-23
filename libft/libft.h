@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 09:52:12 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/22 15:31:52 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/23 23:11:02 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -23,7 +24,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-// PART 1 (23 functions) -------------------------------------------------------
+// PART 1 (23 functions) *******************************************************
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
@@ -48,7 +49,7 @@ char	*ft_strrchr(const char *s, int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 
-// PART 2 (11 functions) -------------------------------------------------------
+// PART 2 (11 functions) *******************************************************
 char	*ft_itoa(int n);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
@@ -56,16 +57,18 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 char	**ft_split(char const *s, char c);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-int		ft_is_striteri(char *s, int (*f)(int));
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
-// FT_PRINTF (4 functions) -----------------------------------------------------
+// FT_PRINTF (4 functions) *****************************************************
 int		ft_printf(const char *format, ...);
 int		print_nbr(long arg);
 int		print_hex(const char f, unsigned int arg);
 int		print_ptr(unsigned long arg);
+
+// EXTRA (1 function) **********************************************************
+int		ft_is_striteri(char *s, int (*f)(int));
 
 #endif

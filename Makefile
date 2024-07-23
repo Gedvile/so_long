@@ -10,46 +10,52 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC			=	gcc
-#####	setup flags and libraries
-#CFLAGS		=	-03 -Wall -Wextra -Werror -g
-CFLAGS		=	-O3 -Wall -Wextra -Werror -g
-#####	explanation of LIBMLX flags:
+# COMPILER AND FLAGS ********************************************************* #
+CC		=	gcc
+#CFLAGS	=	-03 -Wall -Wextra -Werror -g
+CFLAGS	=	-O3 -Wall -Wextra -Werror -g
+
+# DIRECTORIES **************************************************************** #
+LFTDIR	=	libft
+
+# LIBRARIES ****************************************************************** #
+# explanation of MLIBX flags:
 # -Lminilibx-linux: adds minilibx-linux to the library search path
 # -lmlx_Linux: links against the mlx_Linux library
 # -lX11: links against the X11 library (dependency: X Window System)
 # -lXext: links against the X Extensions library (dependency: XWS extension)
 # -lz: links against the zlib compression library (dependency: *.png handling)
-# -lm: links against the math library (maths)
-MLIBX		=	-Lminilibx-linux -lmlx_Linux -lX11 -lXext -lz -lm
-LIBFT		=	-Llibft -lft
+# -lm: links against the math library
+MLIBX	=	-Lminilibx-linux -lmlx_Linux -lX11 -lXext -lz -lm
+LIBFT	=	-L$(LFTDIR) -lft
 
-#####	setup file names
-SRCS		=	so_long.c
-OBJS		=	$(SRCS:.c=.o)
-NAME		=	so_long
+# FILE NAMES ***************************************************************** #
+SRCS	=	so_long.c
 
-#####	default action of Makefile
-all:	$(NAME)
+OBJS	=	$(SRCS:.c=.o)
+NAME	=	so_long
 
-#####	compile without linking
+# MAIN TASKS ***************************************************************** #
+all: $(NAME)
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-#####	finish making the program
-$(NAME):	$(OBJS)
+$(NAME): $(OBJS)
 #	wget, extract, move?, ./minilibx-linux/configure
-#	$(MAKE) -C libft
+	$(MAKE) -C $(LFTDIR)
 	$(CC) $(OBJS) $(MLIBX) $(LIBFT) -o $(NAME)
 
-#####	cleanup
+# CLEANUP ******************************************************************** #
 clean:
-#	$(MAKE) clean -C libft
+	$(MAKE) clean -C $(LFTDIR)
 	rm -f $(OBJS)
+	
 fclean: clean
-#	$(MAKE) fclean -C libft
+	rm -f $(LFTDIR)/libft.a
 	rm -f $(NAME)
+	
 re: fclean all
 
-#####	Makefile commands
+# KEYWORDS ******************************************************************* #
 .PHONY:	all clean fclean re
