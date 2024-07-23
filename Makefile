@@ -10,45 +10,46 @@
 #                                                                              #
 # **************************************************************************** #
 
-# set compiler and flags
+#####	setup flags and libraries
 CC			=	gcc
-#CFLAGS		=	-g -Wall -Wextra -Werror
-CFLAGS		=	-g
-#MLXLIB		=	-L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11
-LIBFT		=	-L./libft -l:libft.a
+#CFLAGS		=	-03 -Wall -Wextra -Werror -g
+CFLAGS		=	-O3 -g
+#####	explanation of LIBMLX flags:
+# -Lminilibx-linux: adds minilibx-linux to the library search path
+# -lmlx_Linux: links against the mlx_Linux library
+# -lXext: links against the X Extensions library
+# -lX11: links against the X11 library
+# -lm: links against the math library
+# -lz: links against the zlib compression library
+LIBMLX		=	-Lminilibx-linux -lmlx_Linux -lXext -lX11 -lm -lz
+LIBFT		=	-Llibft -lft
 
-# select files to compile
+#####	setup file names
 SRCS		=	so_long.c
 OBJS		=	$(SRCS:.c=.o)
-
-# set the name of the end program
 NAME		=	so_long
 
-# default action of Makefile
+#####	default action of Makefile
 all:	$(NAME)
 
-# compile library, finish making the program
+#####	compile without linking
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+#####	finish making the program
 $(NAME):	$(OBJS)
 #	$(MAKE) -C libft
-#	$(CC) $(CFLAGS) -o $@ $^ $(MLXLIB)
-	$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(LIBFT) -o $(NAME)
+#	./minilibx-linux/configure
+	$(CC) $(OBJS) $(LIBMLX) $(LIBFT) -o $(NAME)
 
-
-# compile each file without linking
-%.o: %.c
-#	$(CC) $(CFLAGS) -c $< -o $@
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
-
-# delete the files created with make without confirmation
+#####	cleanup
 clean:
 #	$(MAKE) clean -C libft
 	rm -f $(OBJS)
-fclean:	clean
+fclean: clean
 #	$(MAKE) fclean -C libft
 	rm -f $(NAME)
+re: fclean all
 
-# delete the files created with make and relaunch make
-re:	fclean all
-
-# set commands to prevent conflicts with files of the same names
+#####	Makefile commands
 .PHONY:	all clean fclean re
