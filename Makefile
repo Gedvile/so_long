@@ -12,8 +12,10 @@
 
 # set compiler and flags
 CC			=	gcc
-CFLAGS		=	-g -Wall -Wextra -Werror
-ADDLIB		=	-L./libft -l:libft.a
+#CFLAGS		=	-g -Wall -Wextra -Werror
+CFLAGS		=	-g
+#MLXLIB		=	-L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11
+LIBFT		=	-L./libft -l:libft.a
 
 # select files to compile
 SRCS		=	so_long.c
@@ -27,19 +29,22 @@ all:	$(NAME)
 
 # compile library, finish making the program
 $(NAME):	$(OBJS)
-	$(MAKE) -C libft
-	$(CC) $(CFLAGS) -o $@ $^ $(ADDLIB)
+#	$(MAKE) -C libft
+#	$(CC) $(CFLAGS) -o $@ $^ $(MLXLIB)
+	$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(LIBFT) -o $(NAME)
+
 
 # compile each file without linking
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+#	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 # delete the files created with make without confirmation
 clean:
-	$(MAKE) clean -C libft
+#	$(MAKE) clean -C libft
 	rm -f $(OBJS)
 fclean:	clean
-	$(MAKE) fclean -C libft
+#	$(MAKE) fclean -C libft
 	rm -f $(NAME)
 
 # delete the files created with make and relaunch make
