@@ -10,8 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-#####	setup flags and libraries
 CC			=	gcc
+#####	setup flags and libraries
 #CFLAGS		=	-03 -Wall -Wextra -Werror -g
 CFLAGS		=	-O3 -g
 #####	explanation of LIBMLX flags:
@@ -38,8 +38,8 @@ all:	$(NAME)
 
 #####	finish making the program
 $(NAME):	$(OBJS)
-#	$(MAKE) -C libft
 #	./minilibx-linux/configure
+#	$(MAKE) -C libft
 	$(CC) $(OBJS) $(LIBMLX) $(LIBFT) -o $(NAME)
 
 #####	cleanup
