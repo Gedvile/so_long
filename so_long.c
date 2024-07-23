@@ -6,9 +6,19 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/23 19:14:23 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/23 19:32:14 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+Arguments:
+	*.ber (map)
+Ext funcs:
+	- open, close, read, write, malloc, free, perror, strerror, exit
+	- minilibx library
+	- math library
+	- libft library
+*/
 
 #include "so_long.h"
 
