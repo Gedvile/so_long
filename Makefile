@@ -6,14 +6,14 @@
 #    By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 16:07:45 by gklimasa          #+#    #+#              #
-#    Updated: 2024/07/24 09:16:34 by gklimasa         ###   ########.fr        #
+#    Updated: 2024/07/25 23:03:15 by gklimasa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # COMPILER AND FLAGS ********************************************************* #
 CC			=	gcc
 #CFLAGS		=	-03 -Wall -Wextra -Werror
-CFLAGS		=	-O3 -Wall -Wextra -Werror -g
+CFLAGS		=	-O3  -g
 
 # DIRECTORIES **************************************************************** #
 LIBFT_DIR	=	libft
@@ -44,16 +44,16 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 #	wget, extract, move?, ./minilibx-linux/configure
-	$(MAKE) -C $(LIBFT_DIR)
+#	$(MAKE) -C $(LIBFT_DIR)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLIBX) $(MATHLIB) $(LIBFT)
 
 # CLEANUP ******************************************************************** #
 clean:
-	$(MAKE) clean -C $(LIBFT_DIR)
+#	$(MAKE) clean -C $(LIBFT_DIR)
 	rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(LIBFT_DIR)/libft.a
+#	rm -f $(LIBFT_DIR)/libft.a
 	rm -f $(NAME)
 
 re: fclean all

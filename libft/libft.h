@@ -18,12 +18,6 @@
 # include <stdarg.h>
 # include <limits.h>
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
-
 // PART 1 (23 functions) *******************************************************
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);

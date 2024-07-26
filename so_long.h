@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:29:26 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/23 19:13:03 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/25 23:48:10 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
+//# include <math.h>
+# include <stdio.h>
+//# include <string.h>
+//# include <fcntl.h>
 
 typedef struct s_data
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void	*mlx;
+	void	*window;
+	int		height;
+	int		width;
 }	t_data;
 
 #endif
