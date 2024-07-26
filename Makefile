@@ -6,14 +6,14 @@
 #    By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 16:07:45 by gklimasa          #+#    #+#              #
-#    Updated: 2024/07/25 23:03:15 by gklimasa         ###   ########.fr        #
+#    Updated: 2024/07/26 16:33:28 by gklimasa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # COMPILER AND FLAGS ********************************************************* #
 CC			=	gcc
 #CFLAGS		=	-03 -Wall -Wextra -Werror
-CFLAGS		=	-O3  -g
+CFLAGS		=	-O3 -Wall -Wextra -Werror -g
 
 # DIRECTORIES **************************************************************** #
 LIBFT_DIR	=	libft
