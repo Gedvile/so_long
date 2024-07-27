@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/28 00:00:53 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/28 01:03:38 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	read_map(char *map, t_data *data)
 	char	*line;
 	int		i;
 	int		j;
+	char	*tmp;
 
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
@@ -141,7 +142,29 @@ void	read_map(char *map, t_data *data)
 	if (i < 3 || j < 3)
 		exit_process(data, "Error: map is too small\n");
 
-	data->map = (char **)malloc(sizeof(char *) * (i + 1));
+	tmp = (char *)malloc(sizeof(char *) * (i * j + 1));
+	if (!tmp)
+		exit_process(data, "Error: tmp malloc() fail\n");
+	ft_memset(tmp, 0, i * j + 1);
+	fd = open(map, O_RDONLY);
+	if (fd < 0)
+		exit_process(data, "Error: open() fail\n");
+	while ((line = get_next_line(fd)))
+	{
+		if ((int)ft_strlcat(tmp, line, i * j + 1) > i * j)
+		{
+			free(line);
+			free(tmp);
+			close(fd);
+			exit_process(data, "Error: tmp malloc() fail\n");
+		}
+		free(line);
+	}
+	data->map = ft_split(tmp, '\n');
+	free(tmp);
+	close(fd);
+
+	/* data->map = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!data->map)
 		exit_process(data, "Error: map malloc() fail\n");
 	fd = open(map, O_RDONLY);
@@ -157,7 +180,7 @@ void	read_map(char *map, t_data *data)
 		i++;
 	}
 	data->map[i] = NULL;
-	close(fd);
+	close(fd); */
 }
 
 int	main(void)
@@ -173,7 +196,7 @@ int	main(void)
 	read_map("maps/map.ber", data);
 	i = 0;
 	while (data->map && data->map[i])
-		ft_printf("%s", data->map[i++]);
+		ft_printf("%s\n", data->map[i++]);
 
 	data->width = 600;
 	data->height = 300;
