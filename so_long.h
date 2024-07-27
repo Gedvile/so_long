@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:29:26 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/26 16:34:15 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/26 17:29:35 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@ typedef struct s_data
 	void	*window;
 	int		width;
 	int		height;
-	void	*img;
-	char	*img_addr;
-	int		img_width;
-	int		img_height;
+	void	*background;
+	char	*background_addr;
+	int		background_width;
+	int		background_height;
+	void	*hero;
+	char	*hero_addr;
+	int		hero_width;
+	int		hero_height;
 	int		moves;
 }	t_data;
 
