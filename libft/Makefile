@@ -54,7 +54,9 @@ SRC		=	src/ft_atoi.c \
 			src/ft_tolower.c \
 			src/ft_toupper.c \
 			src/ft_printf.c \
-			src/ft_printf_utils.c
+			src/ft_printf_utils.c \
+			src/get_next_line.c \
+			src/get_next_line_utils.c
 
 OBJ		=	$(SRC:src/%.c=$(OBJ_DIR)/%.o)
 NAME	=	libft.a

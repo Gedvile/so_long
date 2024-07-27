@@ -20,14 +20,8 @@ LIBFT_DIR	=	libft
 MLIBX_DIR	=	minilibx-linux
 
 # LIBRARIES ****************************************************************** #
-# Explanation of MLIBX flags:
-# 	-L$(MLIBX_DIR): adds MLIBX directory to the library search path
-# 	-lmlx_Linux: links against the MLIBX library
-# 	-lX11: links against the X11 library (dependency: X Window System)
-# 	-lXext: links against the X Extensions library (dependency: X extension)
-# 	-lz: links against the zlib compression library (dependency: *.png handling)
-MLIBX		=	-L$(MLIBX_DIR) -lmlx_Linux -lX11 -lXext -lz
-MATHLIB		=	-lm
+MLIBX		=	-L$(MLIBX_DIR) -lmlx_Linux -lX11 -lXext
+#MATHLIB	=	-lm
 LIBFT		=	-L$(LIBFT_DIR) -lft
 
 # FILE NAMES ***************************************************************** #
@@ -45,7 +39,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 #	wget, extract, move?, ./minilibx-linux/configure
 #	$(MAKE) -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLIBX) $(MATHLIB) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLIBX) $(LIBFT)
 
 # CLEANUP ******************************************************************** #
 clean:

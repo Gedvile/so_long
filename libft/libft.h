@@ -13,6 +13,10 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
@@ -61,6 +65,12 @@ int		ft_printf(const char *format, ...);
 int		print_nbr(long arg);
 int		print_hex(const char f, unsigned int arg);
 int		print_ptr(unsigned long arg);
+
+// GET_NEXT_LINE (4 functions) *************************************************
+char	*get_next_line(int fd);
+int		is_newline(char *str);
+char	*append_buffer(char *line, char *buffer);
+void	trim_buffer(char *buffer);
 
 // EXTRA (1 function) **********************************************************
 int		ft_is_striteri(char *s, int (*f)(int));

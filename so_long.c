@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/27 21:08:38 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/27 22:41:47 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,27 +57,27 @@ void	setup_textures(t_data *data)
 	data->img[0] = mlx_xpm_file_to_image(data->mlx, data->img_addr[0],
 			&data->img_width[0], &data->img_height[0]);
 	if (!(data->img[0]))
-		exit_process(data, "Error: mlx_xpm_file_to_image() fail\n");
+		exit_process(data, "Error: mlx_xpm_file_to_image() background fail\n");
 	data->img_addr[1] = "./textures/wall.xpm";
 	data->img[1] = mlx_xpm_file_to_image(data->mlx, data->img_addr[1],
 			&data->img_width[1], &data->img_height[1]);
 	if (!(data->img[1]))
-		exit_process(data, "Error: mlx_xpm_file_to_image() fail\n");
+		exit_process(data, "Error: mlx_xpm_file_to_image() wall fail\n");
 	data->img_addr[2] = "./textures/player.xpm";
 	data->img[2] = mlx_xpm_file_to_image(data->mlx, data->img_addr[2],
 			&data->img_width[2], &data->img_height[2]);
 	if (!(data->img[2]))
-		exit_process(data, "Error: mlx_xpm_file_to_image() fail\n");
+		exit_process(data, "Error: mlx_xpm_file_to_image() player fail\n");
 	data->img_addr[3] = "./textures/sprite.xpm";
 	data->img[3] = mlx_xpm_file_to_image(data->mlx, data->img_addr[3],
 			&data->img_width[3], &data->img_height[3]);
 	if (!(data->img[3]))
-		exit_process(data, "Error: mlx_xpm_file_to_image() fail\n");
+		exit_process(data, "Error: mlx_xpm_file_to_image() sprite fail\n");
 	data->img_addr[4] = "./textures/home.xpm";
 	data->img[4] = mlx_xpm_file_to_image(data->mlx, data->img_addr[4],
 			&data->img_width[4], &data->img_height[4]);
 	if (!(data->img[4]))
-		exit_process(data, "Error: mlx_xpm_file_to_image() fail\n");
+		exit_process(data, "Error: mlx_xpm_file_to_image() home fail\n");
 }
 
 int	key_hook(int keycode, t_data *data)
@@ -107,6 +107,16 @@ int	mouse_exit(t_data *data)
 int	main(void)
 {
 	t_data	*data;
+	char	*res;
+	int		fd;
+
+	fd = open("maps/map.ber", O_RDONLY);
+	while ((res = get_next_line(fd)))
+	{
+		ft_printf("%s", res);
+		free(res);
+	}
+	close(fd);
 
 	data = (t_data *)malloc(sizeof(t_data)); // data init
 	if (!data)
@@ -114,7 +124,6 @@ int	main(void)
 	ft_memset(data, 0, sizeof(t_data));
 	data->width = 600;
 	data->height = 300;
-	data->moves = 0;
 	data->mlx = mlx_init(); // connection init
 	if (!(data->mlx))
 		exit_process(data, "Error: mlx_init() fail\n");
