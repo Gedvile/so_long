@@ -6,12 +6,16 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:29:26 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/27 23:53:41 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/28 00:04:33 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+# ifndef TILE_SIZE
+#  define TILE_SIZE 64
+# endif
 
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
