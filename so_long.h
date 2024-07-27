@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:29:26 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/27 21:43:30 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/27 23:53:41 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_data
 	void	*window;
 	int		width;
 	int		height;
+	char	**map;
 	void	*img[5];
 	char	*img_addr[5];
 	int		img_width[5];

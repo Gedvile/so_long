@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/27 22:41:47 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/28 00:00:53 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ void	exit_process(t_data *data, char *err_msg)
 {
 	int	i;
 
+	i = 0;
+	while (data->map && data->map[i])
+		free(data->map[i++]);
+	if (data->map)
+		free(data->map);
 	i = 0;
 	while (i < 5)
 	{
@@ -104,24 +109,72 @@ int	mouse_exit(t_data *data)
 	return (0);
 }
 
+void	read_map(char *map, t_data *data)
+{
+	int		fd;
+	char	*line;
+	int		i;
+	int		j;
+
+	fd = open(map, O_RDONLY);
+	if (fd < 0)
+		exit_process(data, "Error: open() fail\n");
+	i = 0;
+	j = 0;
+	while ((line = get_next_line(fd)))
+	{
+		if (i == 0)
+			j = ft_strlen(line);
+		else if (j != (int)ft_strlen(line))
+		{
+			free(line);
+			close(fd);
+			exit_process(data, "Error: map is not rectangular\n");
+		}
+		ft_printf("%s", line);
+		ft_printf("- line length %d\n", ft_strlen(line));
+		free(line);
+		i++;
+	}
+	close(fd);
+	ft_printf("Map size: %d x %d\n", j, i);
+	if (i < 3 || j < 3)
+		exit_process(data, "Error: map is too small\n");
+
+	data->map = (char **)malloc(sizeof(char *) * (i + 1));
+	if (!data->map)
+		exit_process(data, "Error: map malloc() fail\n");
+	fd = open(map, O_RDONLY);
+	if (fd < 0)
+		exit_process(data, "Error: open() fail\n");
+	i = 0;
+	while ((line = get_next_line(fd)))
+	{
+		data->map[i] = ft_strdup(line);
+		if (!data->map[i])
+			exit_process(data, "Error: map malloc() fail\n");
+		free(line);
+		i++;
+	}
+	data->map[i] = NULL;
+	close(fd);
+}
+
 int	main(void)
 {
 	t_data	*data;
-	char	*res;
-	int		fd;
-
-	fd = open("maps/map.ber", O_RDONLY);
-	while ((res = get_next_line(fd)))
-	{
-		ft_printf("%s", res);
-		free(res);
-	}
-	close(fd);
+	int		i;
 
 	data = (t_data *)malloc(sizeof(t_data)); // data init
 	if (!data)
 		exit_process(data, "Error: data malloc() fail\n");
 	ft_memset(data, 0, sizeof(t_data));
+
+	read_map("maps/map.ber", data);
+	i = 0;
+	while (data->map && data->map[i])
+		ft_printf("%s", data->map[i++]);
+
 	data->width = 600;
 	data->height = 300;
 	data->mlx = mlx_init(); // connection init
