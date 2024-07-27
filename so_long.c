@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/27 19:10:12 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/27 21:08:38 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,15 @@ Ext funcs:
 
 void	exit_process(t_data *data, char *err_msg)
 {
-	if (data->hero)
-		mlx_destroy_image(data->mlx, data->hero);
-	if (data->background)
-		mlx_destroy_image(data->mlx, data->background);
+	int	i;
+
+	i = 0;
+	while (i < 5)
+	{
+		if (data->img[i])
+			mlx_destroy_image(data->mlx, data->img[i]);
+		i++;
+	}
 	if (data->window)
 		mlx_destroy_window(data->mlx, data->window);
 	if (data->mlx)
@@ -46,6 +51,35 @@ void	exit_process(t_data *data, char *err_msg)
 		exit(EXIT_SUCCESS);
 }
 
+void	setup_textures(t_data *data)
+{
+	data->img_addr[0] = "./textures/background.xpm";
+	data->img[0] = mlx_xpm_file_to_image(data->mlx, data->img_addr[0],
+			&data->img_width[0], &data->img_height[0]);
+	if (!(data->img[0]))
+		exit_process(data, "Error: mlx_xpm_file_to_image() fail\n");
+	data->img_addr[1] = "./textures/wall.xpm";
+	data->img[1] = mlx_xpm_file_to_image(data->mlx, data->img_addr[1],
+			&data->img_width[1], &data->img_height[1]);
+	if (!(data->img[1]))
+		exit_process(data, "Error: mlx_xpm_file_to_image() fail\n");
+	data->img_addr[2] = "./textures/player.xpm";
+	data->img[2] = mlx_xpm_file_to_image(data->mlx, data->img_addr[2],
+			&data->img_width[2], &data->img_height[2]);
+	if (!(data->img[2]))
+		exit_process(data, "Error: mlx_xpm_file_to_image() fail\n");
+	data->img_addr[3] = "./textures/sprite.xpm";
+	data->img[3] = mlx_xpm_file_to_image(data->mlx, data->img_addr[3],
+			&data->img_width[3], &data->img_height[3]);
+	if (!(data->img[3]))
+		exit_process(data, "Error: mlx_xpm_file_to_image() fail\n");
+	data->img_addr[4] = "./textures/home.xpm";
+	data->img[4] = mlx_xpm_file_to_image(data->mlx, data->img_addr[4],
+			&data->img_width[4], &data->img_height[4]);
+	if (!(data->img[4]))
+		exit_process(data, "Error: mlx_xpm_file_to_image() fail\n");
+}
+
 int	key_hook(int keycode, t_data *data)
 {
 	if (keycode == 65307)
@@ -57,7 +91,7 @@ int	key_hook(int keycode, t_data *data)
 	if (keycode == 100 || keycode == 65363)
 	{
 		ft_printf("[right]	Total moves: %d \n", ++data->moves);
-		mlx_put_image_to_window(data->mlx, data->window, data->hero, 64, 0);
+		mlx_put_image_to_window(data->mlx, data->window, data->img[2], 64, 0);
 	}
 	if (keycode == 119 || keycode == 65362)
 		ft_printf("[up]	Total moves: %d \n", ++data->moves);
@@ -77,6 +111,7 @@ int	main(void)
 	data = (t_data *)malloc(sizeof(t_data)); // data init
 	if (!data)
 		exit_process(data, "Error: data malloc() fail\n");
+	ft_memset(data, 0, sizeof(t_data));
 	data->width = 600;
 	data->height = 300;
 	data->moves = 0;
@@ -87,22 +122,14 @@ int	main(void)
 			data->width, data->height, "so_long");
 	if (!(data->window))
 		exit_process(data, "Error: mlx_new_window() fail\n");
-	data->background_addr = "./textures/green.xpm"; // image init
-	data->background = mlx_xpm_file_to_image(data->mlx, data->background_addr,
-			&data->background_width, &data->background_height);
-	if (!(data->background))
-		exit_process(data, "Error: mlx_xpm_file_to_image() fail\n");
 
-	data->hero_addr = "./textures/bee.xpm"; // image init
-	data->hero = mlx_xpm_file_to_image(data->mlx, data->hero_addr,
-			&data->hero_width, &data->hero_height);
-	if (!(data->hero))
-		exit_process(data, "Error: mlx_xpm_file_to_image() fail\n");
+	setup_textures(data);
 
-	mlx_put_image_to_window(data->mlx, data->window, data->background, 0, 0);
-	mlx_put_image_to_window(data->mlx, data->window, data->background, 200, 100);
-	mlx_put_image_to_window(data->mlx, data->window, data->background, 400, 200);
-	mlx_put_image_to_window(data->mlx, data->window, data->hero, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->window, data->img[0], 0, 0);
+	mlx_put_image_to_window(data->mlx, data->window, data->img[1], 200, 100);
+	mlx_put_image_to_window(data->mlx, data->window, data->img[3], 400, 0);
+	mlx_put_image_to_window(data->mlx, data->window, data->img[4], 400, 200);
+	mlx_put_image_to_window(data->mlx, data->window, data->img[2], 0, 0);
 
 	mlx_key_hook(data->window, key_hook, data);
 	mlx_hook(data->window, 17, 0, mouse_exit, data);
