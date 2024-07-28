@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/28 12:15:35 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/28 12:50:44 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int	main(int argc, char *argv[])
 
 	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4)) // map check
 		exit_process(data, "Error: invalid map file\n");
-	validate_map(argv[1], data);
+	init_map(argv[1], data);
 	i = 0;
 	while (data->map && data->map[i])
 		ft_printf("%s\n", data->map[i++]);

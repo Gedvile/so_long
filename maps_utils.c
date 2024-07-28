@@ -6,11 +6,60 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:10:46 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/28 12:12:25 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/28 16:17:50 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/* void	check_path(t_data *data, int width, int height)
+{
+
+
+} */
+
+void	validate_map(t_data *data, int width, int height)
+{
+	int	i;
+	int	j;
+	int	player;
+	int	exit;
+
+	i = 0;
+	player = 0;
+	exit = 0;
+	while (data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (!(data->map[i][j] == '0' || data->map[i][j] == '1'
+				|| data->map[i][j] == 'P' || data->map[i][j] == 'C'
+				|| data->map[i][j] == 'E'))
+				exit_process(data, "Error: unrecognized value in map\n");
+			if ( i == 0 || j == 0 || i == height - 1 || j == width - 1)
+				if (data->map[i][j] != '1')
+					exit_process(data, "Error: bad walls\n");
+			if (data->map[i][j] == 'P')
+			{
+				data->player_loc[0] = i;
+				data->player_loc[1] = j;
+				player++;
+			}
+			if (data->map[i][j] == 'E')
+				exit++;
+			if (data->map[i][j] == 'C')
+				data->collectibles++;
+			j++;
+		}
+		i++;
+	}
+	if (player != 1 || exit != 1 || data->collectibles < 1)
+		exit_process(data, "Error: wrong amount of sprites\n");
+	//check_path(data, width, height);
+	ft_printf("\ncollectibles: %d\n", data->collectibles);
+}
+
 
 void	read_map(char *map_address, t_data *data, int i, int j)
 {
@@ -43,9 +92,10 @@ void	read_map(char *map_address, t_data *data, int i, int j)
 		exit_process(data, "Error: ft_split() fail\n");
 	data->width = (i - 1) * TILE_SIZE;
 	data->height = j * TILE_SIZE;
+	validate_map(data, i - 1, j);
 }
 
-void	validate_map(char *map_address, t_data *data)
+void	init_map(char *map_address, t_data *data)
 {
 	int		fd;
 	char	*line;
