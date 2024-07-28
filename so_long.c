@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/28 12:50:44 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/28 16:47:58 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,8 @@ int	main(int argc, char *argv[])
 	i = 0;
 	while (data->map && data->map[i])
 		ft_printf("%s\n", data->map[i++]);
+	ft_printf("\ncollectibles: %d\n", data->collectibles);
+	ft_printf("\nPlayer address: %d, %d\n", data->player_loc[0], data->player_loc[1]);
 
 	data->mlx = mlx_init(); // connection init
 	if (!(data->mlx))

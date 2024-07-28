@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:10:46 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/28 16:17:50 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/28 16:44:56 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	validate_map(t_data *data, int width, int height)
 	if (player != 1 || exit != 1 || data->collectibles < 1)
 		exit_process(data, "Error: wrong amount of sprites\n");
 	//check_path(data, width, height);
-	ft_printf("\ncollectibles: %d\n", data->collectibles);
 }
 
 
