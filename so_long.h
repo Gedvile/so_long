@@ -6,24 +6,25 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:29:26 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/28 00:04:33 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/28 12:27:42 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# ifndef TILE_SIZE
-#  define TILE_SIZE 64
-# endif
-
+/* INCLUDES ***************************************************************** */
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
-# include <math.h>
+//# include <math.h>
 # include <stdio.h>
 # include <string.h>
 # include <fcntl.h>
 
+/* DEFINES ****************************************************************** */
+# define TILE_SIZE 64
+
+/* STRUCTS ****************************************************************** */
 typedef struct s_data
 {
 	void	*mlx;
@@ -37,5 +38,14 @@ typedef struct s_data
 	int		img_height[5];
 	int		moves;
 }	t_data;
+
+/* SO_LONG ****************************************************************** */
+void	exit_process(t_data *data, char *err_msg);
+
+/* MAPS_UTILS *************************************************************** */
+void	validate_map(char *map_address, t_data *data);
+
+/* MOVES_UTILS ************************************************************** */
+int		key_hook(int keycode, t_data *data);
 
 #endif

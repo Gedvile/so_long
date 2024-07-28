@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/28 11:13:43 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/28 12:15:35 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ void	exit_process(t_data *data, char *err_msg)
 		exit(EXIT_SUCCESS);
 }
 
+int	mouse_exit(t_data *data)
+{
+	exit_process(data, NULL);
+	return (0);
+}
+
 void	setup_textures(t_data *data)
 {
 	data->img_addr[0] = "./textures/background.xpm";
@@ -83,93 +89,6 @@ void	setup_textures(t_data *data)
 			&data->img_width[4], &data->img_height[4]);
 	if (!(data->img[4]))
 		exit_process(data, "Error: mlx_xpm_file_to_image() exit fail\n");
-}
-
-int	key_hook(int keycode, t_data *data)
-{
-	if (keycode == 65307)
-		exit_process(data, NULL);
-	if (keycode == 97 || keycode == 65361)
-		ft_printf("[left]	Total moves: %d \n", ++data->moves);
-	if (keycode == 115  || keycode == 65364)
-		ft_printf("[down]	Total moves: %d \n", ++data->moves);
-	if (keycode == 100 || keycode == 65363)
-	{
-		ft_printf("[right]	Total moves: %d \n", ++data->moves);
-		mlx_put_image_to_window(data->mlx, data->window, data->img[2], 64, 0);
-	}
-	if (keycode == 119 || keycode == 65362)
-		ft_printf("[up]	Total moves: %d \n", ++data->moves);
-	return (0);
-}
-
-int	mouse_exit(t_data *data)
-{
-	exit_process(data, NULL);
-	return (0);
-}
-
-void	read_map(char *map_address, t_data *data, int i, int j)
-{
-	int		fd;
-	char	*line;
-	char	*tmp;
-
-	tmp = (char *)malloc(sizeof(char *) * (i * j + 1));
-	if (!tmp)
-		exit_process(data, "Error: tmp malloc() fail\n");
-	ft_memset(tmp, 0, i * j + 1);
-	fd = open(map_address, O_RDONLY);
-	if (fd < 0)
-		exit_process(data, "Error: open() fail\n");
-	while ((line = get_next_line(fd)))
-	{
-		if ((int)ft_strlcat(tmp, line, i * j + 1) > i * j)
-		{
-			free(line);
-			free(tmp);
-			close(fd);
-			exit_process(data, "Error: tmp ft_strlcat() fail\n");
-		}
-		free(line);
-	}
-	close(fd);
-	data->map = ft_split(tmp, '\n');
-	free(tmp);
-	if (!(data->map))
-		exit_process(data, "Error: ft_split() fail\n");
-	data->width = (i - 1) * TILE_SIZE;
-	data->height = j * TILE_SIZE;
-}
-
-void	validate_map(char *map_address, t_data *data)
-{
-	int		fd;
-	char	*line;
-	int		i;
-	int		j;
-
-	fd = open(map_address, O_RDONLY);
-	if (fd < 0)
-		exit_process(data, "Error: open() fail\n");
-	i = 0;
-	j = 0;
-	while ((line = get_next_line(fd)))
-	{
-		if (j++ == 0)
-			i = ft_strlen(line);
-		else if (i != (int)ft_strlen(line))
-		{
-			free(line);
-			close(fd);
-			exit_process(data, "Error: map is not rectangular\n");
-		}
-		free(line);
-	}
-	close(fd);
-	if (i < 5 || j < 5)
-		exit_process(data, "Error: map is too small\n");
-	read_map(map_address, data, i, j);
 }
 
 // 0 - background, 1 - wall, 2 - player, 3 - collectible, 4 - exit

@@ -6,7 +6,7 @@
 #    By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 16:07:45 by gklimasa          #+#    #+#              #
-#    Updated: 2024/07/27 19:10:30 by gklimasa         ###   ########.fr        #
+#    Updated: 2024/07/28 12:11:57 by gklimasa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ MLIBX		=	-L$(MLIBX_DIR) -lmlx_Linux -lX11 -lXext
 LIBFT		=	-L$(LIBFT_DIR) -lft
 
 # FILE NAMES ***************************************************************** #
-SRCS		=	so_long.c
+SRCS		=	so_long.c \
+				maps_utils.c \
+				moves_utils.c
 
 OBJS		=	$(SRCS:.c=.o)
 NAME		=	so_long

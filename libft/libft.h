@@ -6,23 +6,23 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 09:52:12 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/23 23:11:02 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/28 12:26:55 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-
+/* INCLUDES ***************************************************************** */
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
 # include <limits.h>
 
-// PART 1 (23 functions) *******************************************************
+/* DEFINES ****************************************************************** */
+# define BUFFER_SIZE 42
+
+/* PART 1 (23 functions) **************************************************** */
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
@@ -47,7 +47,7 @@ char	*ft_strrchr(const char *s, int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 
-// PART 2 (11 functions) *******************************************************
+/* PART 2 (11 functions) **************************************************** */
 char	*ft_itoa(int n);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
@@ -60,19 +60,19 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
-// FT_PRINTF (4 functions) *****************************************************
+/* FT_PRINTF (4 functions) ************************************************** */
 int		ft_printf(const char *format, ...);
 int		print_nbr(long arg);
 int		print_hex(const char f, unsigned int arg);
 int		print_ptr(unsigned long arg);
 
-// GET_NEXT_LINE (4 functions) *************************************************
+/* GET_NEXT_LINE (4 functions) ********************************************** */
 char	*get_next_line(int fd);
 int		is_newline(char *str);
 char	*append_buffer(char *line, char *buffer);
 void	trim_buffer(char *buffer);
 
-// EXTRA (1 function) **********************************************************
+/* EXTRA (1 function) ******************************************************* */
 int		ft_is_striteri(char *s, int (*f)(int));
 
 #endif
