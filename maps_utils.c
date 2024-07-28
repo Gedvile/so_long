@@ -6,17 +6,75 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:10:46 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/28 16:44:56 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 00:11:21 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/* void	check_path(t_data *data, int width, int height)
+int	is_winable(t_data *data)
 {
+	int	i;
+	int	j;
 
+	i = 0;
+	while (data->map && data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (data->map[i][j] == 'P' || data->map[i][j] == 'C'
+				|| data->map[i][j] == 'E')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
 
-} */
+void	flood_fill(t_data *data, int i, int j)
+{
+	// current coordinates out of bounds
+	if (i < 0 || j < 0 || i >= data->height / TILE_SIZE
+						|| j >= data->width / TILE_SIZE) // check if max is ok
+		return ;
+
+	// current coordinates are a wall or already filled
+	if ((data->map[i][j] == '1')
+			|| (data->map[i][j] >= 'a' && data->map[i][j] <= 'z'))
+		return ;
+
+	// current coordinates are background, player, collectible or exit
+	//data->map[i][j] = 'F';
+	if (data->map[i][j] >= 'A' && data->map[i][j] <= 'Z')
+		data->map[i][j] = ft_tolower(data->map[i][j]);
+	else if (data->map[i][j] == '0')
+		data->map[i][j] = 'o';
+
+	flood_fill(data, i + 1, j);
+	flood_fill(data, i - 1, j);
+	flood_fill(data, i, j + 1);
+	flood_fill(data, i, j - 1);
+
+}
+
+void	check_path(t_data *data)
+{
+	int	i;
+
+	flood_fill(data, data->player_loc[0], data->player_loc[1]);
+
+	ft_printf("\nFilled map:\n");
+	i = 0;
+	while (data->map && data->map[i])
+		ft_printf("%s\n", data->map[i++]);
+	ft_printf("\n");
+
+	if (!is_winable(data))
+		exit_process(data, "Error: game is not winable\n");
+
+}
 
 void	validate_map(t_data *data, int width, int height)
 {
@@ -56,7 +114,7 @@ void	validate_map(t_data *data, int width, int height)
 	}
 	if (player != 1 || exit != 1 || data->collectibles < 1)
 		exit_process(data, "Error: wrong amount of sprites\n");
-	//check_path(data, width, height);
+	check_path(data);
 }
 
 

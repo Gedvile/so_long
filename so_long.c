@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/28 16:47:58 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/28 23:43:25 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,11 +140,12 @@ int	main(int argc, char *argv[])
 	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4)) // map check
 		exit_process(data, "Error: invalid map file\n");
 	init_map(argv[1], data);
+	ft_printf("Final map:\n");
 	i = 0;
 	while (data->map && data->map[i])
 		ft_printf("%s\n", data->map[i++]);
-	ft_printf("\ncollectibles: %d\n", data->collectibles);
-	ft_printf("\nPlayer address: %d, %d\n", data->player_loc[0], data->player_loc[1]);
+	ft_printf("\nCollectibles: %d\n", data->collectibles);
+	ft_printf("Player address: %d, %d\n\n", data->player_loc[1], data->player_loc[0]);
 
 	data->mlx = mlx_init(); // connection init
 	if (!(data->mlx))
