@@ -6,13 +6,12 @@
 #    By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 16:07:45 by gklimasa          #+#    #+#              #
-#    Updated: 2024/07/28 12:11:57 by gklimasa         ###   ########.fr        #
+#    Updated: 2024/07/29 13:07:48 by gklimasa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # COMPILER AND FLAGS ********************************************************* #
 CC			=	gcc
-#CFLAGS		=	-03 -Wall -Wextra -Werror
 CFLAGS		=	-O3 -Wall -Wextra -Werror -g
 
 # DIRECTORIES **************************************************************** #
@@ -21,7 +20,6 @@ MLIBX_DIR	=	minilibx-linux
 
 # LIBRARIES ****************************************************************** #
 MLIBX		=	-L$(MLIBX_DIR) -lmlx_Linux -lX11 -lXext
-#MATHLIB	=	-lm
 LIBFT		=	-L$(LIBFT_DIR) -lft
 
 # FILE NAMES ***************************************************************** #

@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/28 23:43:25 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 13:12:29 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ void	exit_process(t_data *data, char *err_msg)
 		free(data);
 	if (err_msg)
 	{
-		perror(err_msg);
+		if (errno != 0)
+			perror(err_msg);
+		else
+			ft_putstr_fd(err_msg, 2);
 		exit(EXIT_FAILURE);
 	}
 	else

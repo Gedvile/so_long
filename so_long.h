@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:29:26 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/28 23:10:38 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 13:10:13 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 /* INCLUDES ***************************************************************** */
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
-//# include <math.h>
-# include <stdio.h>
-# include <string.h>
 # include <fcntl.h>
+# include <stdio.h>
+# include <errno.h>
 
 /* DEFINES ****************************************************************** */
 # define TILE_SIZE 64
@@ -41,13 +40,13 @@ typedef struct s_data
 	int		moves;
 }	t_data;
 
-/* SO_LONG ****************************************************************** */
+/* so_long.c **************************************************************** */
 void	exit_process(t_data *data, char *err_msg);
 
-/* MAPS_UTILS *************************************************************** */
+/* maps_utils.c ************************************************************* */
 void	init_map(char *map_address, t_data *data);
 
-/* MOVES_UTILS ************************************************************** */
+/* moves_utils.c ************************************************************ */
 int		key_hook(int keycode, t_data *data);
 
 #endif
