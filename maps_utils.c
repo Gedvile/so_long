@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:10:46 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 11:57:22 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 13:18:41 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,28 +57,20 @@ int	is_winable(t_data *data)
 
 void	flood_fill(t_data *data, int i, int j)
 {
-	// current coordinates out of bounds
 	if (i < 0 || j < 0 || i >= data->height / TILE_SIZE
-						|| j >= data->width / TILE_SIZE) // check if max is ok
+		|| j >= data->width / TILE_SIZE)
 		return ;
-
-	// current coordinates are a wall or already filled
 	if ((data->map[i][j] == '1')
 			|| (data->map[i][j] >= 'a' && data->map[i][j] <= 'z'))
 		return ;
-
-	// current coordinates are background, player, collectible or exit
-	//data->map[i][j] = 'F';
 	if (data->map[i][j] >= 'A' && data->map[i][j] <= 'Z')
 		data->map[i][j] = ft_tolower(data->map[i][j]);
 	else if (data->map[i][j] == '0')
 		data->map[i][j] = 'o';
-
 	flood_fill(data, i + 1, j);
 	flood_fill(data, i - 1, j);
 	flood_fill(data, i, j + 1);
 	flood_fill(data, i, j - 1);
-
 }
 
 void	check_path(t_data *data)
@@ -86,13 +78,11 @@ void	check_path(t_data *data)
 	int	i;
 
 	flood_fill(data, data->player_loc[0], data->player_loc[1]);
-
 	ft_printf("\nFilled map:\n");
 	i = 0;
 	while (data->map && data->map[i])
 		ft_printf("%s\n", data->map[i++]);
 	ft_printf("\n");
-
 	if (!is_winable(data))
 		exit_process(data, "Error: game is not winable\n");
 	change_back(data);
@@ -117,7 +107,7 @@ void	validate_map(t_data *data, int width, int height)
 				|| data->map[i][j] == 'P' || data->map[i][j] == 'C'
 				|| data->map[i][j] == 'E'))
 				exit_process(data, "Error: unrecognized value in map\n");
-			if ( i == 0 || j == 0 || i == height - 1 || j == width - 1)
+			if (i == 0 || j == 0 || i == height - 1 || j == width - 1)
 				if (data->map[i][j] != '1')
 					exit_process(data, "Error: bad walls\n");
 			if (data->map[i][j] == 'P')
@@ -138,7 +128,6 @@ void	validate_map(t_data *data, int width, int height)
 		exit_process(data, "Error: wrong amount of sprites\n");
 	check_path(data);
 }
-
 
 void	read_map(char *map_address, t_data *data, int i, int j)
 {

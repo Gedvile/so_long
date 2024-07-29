@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 13:12:29 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 13:22:04 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,19 +108,19 @@ void	add_textures(t_data *data)
 		{
 			if (data->map[i][j] == '0')
 				mlx_put_image_to_window(data->mlx, data->window, data->img[0],
-						j * TILE_SIZE, i * TILE_SIZE);
+					j * TILE_SIZE, i * TILE_SIZE);
 			else if (data->map[i][j] == '1')
 				mlx_put_image_to_window(data->mlx, data->window, data->img[1],
-						j * TILE_SIZE, i * TILE_SIZE);
+					j * TILE_SIZE, i * TILE_SIZE);
 			else if (data->map[i][j] == 'P')
 				mlx_put_image_to_window(data->mlx, data->window, data->img[2],
-						j * TILE_SIZE, i * TILE_SIZE);
+					j * TILE_SIZE, i * TILE_SIZE);
 			else if (data->map[i][j] == 'C')
 				mlx_put_image_to_window(data->mlx, data->window, data->img[3],
-						j * TILE_SIZE, i * TILE_SIZE);
+					j * TILE_SIZE, i * TILE_SIZE);
 			else if (data->map[i][j] == 'E')
 				mlx_put_image_to_window(data->mlx, data->window, data->img[4],
-						j * TILE_SIZE, i * TILE_SIZE);
+					j * TILE_SIZE, i * TILE_SIZE);
 			j++;
 		}
 		i++;
@@ -134,13 +134,11 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 		exit_process(NULL, "Error: invalid number of arguments\n");
-
-	data = (t_data *)malloc(sizeof(t_data)); // data init
+	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		exit_process(data, "Error: data malloc() fail\n");
 	ft_memset(data, 0, sizeof(t_data));
-
-	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4)) // map check
+	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4))
 		exit_process(data, "Error: invalid map file\n");
 	init_map(argv[1], data);
 	ft_printf("Final map:\n");
@@ -148,23 +146,20 @@ int	main(int argc, char *argv[])
 	while (data->map && data->map[i])
 		ft_printf("%s\n", data->map[i++]);
 	ft_printf("\nCollectibles: %d\n", data->collectibles);
-	ft_printf("Player address: %d, %d\n\n", data->player_loc[1], data->player_loc[0]);
-
-	data->mlx = mlx_init(); // connection init
+	ft_printf("Player address: %d, %d\n\n", data->player_loc[1],
+		data->player_loc[0]);
+	data->mlx = mlx_init();
 	if (!(data->mlx))
 		exit_process(data, "Error: mlx_init() fail\n");
-	data->window = mlx_new_window(data->mlx, // window init
+	data->window = mlx_new_window(data->mlx,
 			data->width, data->height, "so_long");
 	if (!(data->window))
 		exit_process(data, "Error: mlx_new_window() fail\n");
-
-	setup_textures(data); // textures
+	setup_textures(data);
 	add_textures(data);
-
-	mlx_key_hook(data->window, key_hook, data); // hooks
+	mlx_key_hook(data->window, key_hook, data);
 	mlx_hook(data->window, 17, 0, mouse_exit, data);
 	mlx_loop(data->mlx);
-
 	exit_process(data, NULL);
 	return (0);
 }

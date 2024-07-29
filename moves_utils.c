@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:11:15 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 12:02:01 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 13:19:36 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,12 @@ void	move_player(t_data *data, char direction)
 		data->player_loc[0]--;
 	else if (direction == 'D')
 		data->player_loc[0]++;
-
 	if (data->map[data->player_loc[0]][data->player_loc[1]] == 'C')
 	{
 		data->map[data->player_loc[0]][data->player_loc[1]] = '0';
 		data->collectibles--;
 		ft_printf("[ ] Collectibles left: %d\n", data->collectibles);
 	}
-
 	if (data->map[data->player_loc[0]][data->player_loc[1]] == 'E')
 	{
 		if (data->collectibles == 0)
@@ -46,7 +44,6 @@ void	move_player(t_data *data, char direction)
 		else
 			ft_printf("[ ] Collectibles left: %d\n", data->collectibles);
 	}
-
 	mlx_put_image_to_window(data->mlx, data->window, data->img[2],
 		data->player_loc[1] * TILE_SIZE, data->player_loc[0] * TILE_SIZE);
 	ft_printf("[%c]	Total moves: %d\n", direction, ++data->moves);
@@ -78,7 +75,7 @@ int	key_hook(int keycode, t_data *data)
 		else
 			ft_printf("[U]	Move out of bounds\n");
 	}
-	if (keycode == 115  || keycode == 65364)
+	if (keycode == 115 || keycode == 65364)
 	{
 		if (data->map[data->player_loc[0] + 1][data->player_loc[1]] != '1')
 			move_player(data, 'D');
