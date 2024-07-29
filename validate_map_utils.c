@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:22:30 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/30 00:56:42 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/30 01:27:57 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	flood_fill(t_data *data, int i, int j)
 		|| j < 0 || j >= data->width / TILE_SIZE)
 		return ;
 	if (data->map[i][j] == '1'
-			|| (data->map[i][j] >= 'a' && data->map[i][j] <= 'z'))
+		|| (data->map[i][j] >= 'a' && data->map[i][j] <= 'z'))
 		return ;
 	if (data->map[i][j] >= 'A' && data->map[i][j] <= 'Z')
 		data->map[i][j] = ft_tolower(data->map[i][j]);
@@ -101,9 +101,7 @@ void	validate_chars_and_wall(t_data *data, int width, int height)
 		j = 0;
 		while (data->map[i][j])
 		{
-			if (!(data->map[i][j] == '0' || data->map[i][j] == '1'
-				|| data->map[i][j] == 'P' || data->map[i][j] == 'C'
-				|| data->map[i][j] == 'E'))
+			if (ft_strchr("01PCE", data->map[i][j]) == NULL)
 				exit_process(data, "Error\nInvalid character in the map");
 			if ((i == 0 || j == 0 || i == height - 1 || j == width - 1)
 				&& data->map[i][j] != '1')
