@@ -6,42 +6,11 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:56:26 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 23:33:01 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 23:57:13 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// add all the needed textures to the game:
-// background, wall, player, collectible and exit picture
-void	setup_textures(t_data *data)
-{
-	data->img_addr[0] = "./textures/background.xpm";
-	data->img[0] = mlx_xpm_file_to_image(data->mlx, data->img_addr[0],
-			&data->img_width[0], &data->img_height[0]);
-	if (!data->img[0])
-		exit_process(data, "Error\nFunction mlx_xpm_file_to_image() fail");
-	data->img_addr[1] = "./textures/wall.xpm";
-	data->img[1] = mlx_xpm_file_to_image(data->mlx, data->img_addr[1],
-			&data->img_width[1], &data->img_height[1]);
-	if (!data->img[1])
-		exit_process(data, "Error\nFunction mlx_xpm_file_to_image() fail");
-	data->img_addr[2] = "./textures/player.xpm";
-	data->img[2] = mlx_xpm_file_to_image(data->mlx, data->img_addr[2],
-			&data->img_width[2], &data->img_height[2]);
-	if (!data->img[2])
-		exit_process(data, "Error\nFunction mlx_xpm_file_to_image() fail");
-	data->img_addr[3] = "./textures/collectible.xpm";
-	data->img[3] = mlx_xpm_file_to_image(data->mlx, data->img_addr[3],
-			&data->img_width[3], &data->img_height[3]);
-	if (!data->img[3])
-		exit_process(data, "Error\nFunction mlx_xpm_file_to_image() fail");
-	data->img_addr[4] = "./textures/exit.xpm";
-	data->img[4] = mlx_xpm_file_to_image(data->mlx, data->img_addr[4],
-			&data->img_width[4], &data->img_height[4]);
-	if (!data->img[4])
-		exit_process(data, "Error\nFunction mlx_xpm_file_to_image() fail");
-}
 
 // mlx_put_image_to_window() wrapper
 void	put_image_to_window(t_data *data, int i, int j, int nr)
@@ -76,4 +45,29 @@ void	add_textures(t_data *data)
 		}
 		i++;
 	}
+}
+
+// add all the needed textures to the game:
+// background, wall, player, collectible and exit picture
+void	setup_textures(t_data *data)
+{
+	data->img_addr[0] = "./textures/background.xpm";
+	data->img[0] = mlx_xpm_file_to_image(data->mlx, data->img_addr[0],
+			&data->img_width[0], &data->img_height[0]);
+	data->img_addr[1] = "./textures/wall.xpm";
+	data->img[1] = mlx_xpm_file_to_image(data->mlx, data->img_addr[1],
+			&data->img_width[1], &data->img_height[1]);
+	data->img_addr[2] = "./textures/player.xpm";
+	data->img[2] = mlx_xpm_file_to_image(data->mlx, data->img_addr[2],
+			&data->img_width[2], &data->img_height[2]);
+	data->img_addr[3] = "./textures/collectible.xpm";
+	data->img[3] = mlx_xpm_file_to_image(data->mlx, data->img_addr[3],
+			&data->img_width[3], &data->img_height[3]);
+	data->img_addr[4] = "./textures/exit.xpm";
+	data->img[4] = mlx_xpm_file_to_image(data->mlx, data->img_addr[4],
+			&data->img_width[4], &data->img_height[4]);
+	if (data->img[0] == NULL || data->img[1] == NULL || data->img[2] == NULL
+		|| data->img[3] == NULL || data->img[4] == NULL)
+		exit_process(data, "Error\nFunction mlx_xpm_file_to_image() fail");
+	add_textures(data);
 }

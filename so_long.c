@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 23:28:13 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/30 00:04:27 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,12 @@ void	exit_process(t_data *data, char *err_msg)
 	if (data && data->map)
 		free(data->map);
 	i = 0;
-	while (i < 5 && data && data->img[i])
-		mlx_destroy_image(data->mlx, data->img[i++]);
+	while (data && i < IMG_COUNT)
+	{
+		if (data->img[i])
+			mlx_destroy_image(data->mlx, data->img[i]);
+		i++;
+	}
 	if (data && data->window)
 		mlx_destroy_window(data->mlx, data->window);
 	if (data && data->mlx)
@@ -62,12 +66,12 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 		exit_process(NULL, "Error\nInvalid number of arguments");
+	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4))
+		exit_process(NULL, "Error\nInvalid map file extension");
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		exit_process(data, "Error\nStruct malloc() fail");
 	ft_memset(data, 0, sizeof(t_data));
-	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4))
-		exit_process(data, "Error\nInvalid map file extension");
 	init_map(argv[1], data);
 	data->mlx = mlx_init();
 	if (!data->mlx)
@@ -77,7 +81,6 @@ int	main(int argc, char *argv[])
 	if (!data->window)
 		exit_process(data, "Error\nFunction mlx_new_window() fail");
 	setup_textures(data);
-	add_textures(data);
 	mlx_key_hook(data->window, key_hook, data);
 	mlx_hook(data->window, 17, 0, mouse_hook, data);
 	mlx_loop(data->mlx);

@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:29:26 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 19:35:22 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/30 00:02:57 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 /* DEFINES ****************************************************************** */
 # define TILE_SIZE 64
+# define IMG_COUNT 5
 
 /* STRUCTS ****************************************************************** */
 typedef struct s_data
@@ -31,10 +32,10 @@ typedef struct s_data
 	void	*window;
 	int		width;
 	int		height;
-	void	*img[5];
-	char	*img_addr[5];
-	int		img_width[5];
-	int		img_height[5];
+	void	*img[IMG_COUNT];
+	char	*img_addr[IMG_COUNT];
+	int		img_width[IMG_COUNT];
+	int		img_height[IMG_COUNT];
 	int		player_loc[2];	// [0] - height, [1] - width
 	int		collectibles;
 	int		moves;
@@ -51,7 +52,6 @@ void	validate_map(t_data *data, int width, int height);
 
 /* texture_utils.c ********************************************************** */
 void	setup_textures(t_data *data);
-void	add_textures(t_data *data);
 
 /* hook_utils.c ************************************************************* */
 int		key_hook(int keycode, t_data *data);
