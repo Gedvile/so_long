@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 16:57:35 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 23:28:13 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,21 @@ int	main(int argc, char *argv[])
 	t_data	*data;
 
 	if (argc != 2)
-		exit_process(NULL, "Error: invalid number of arguments");
+		exit_process(NULL, "Error\nInvalid number of arguments");
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
-		exit_process(data, "Error: data struct malloc() fail");
+		exit_process(data, "Error\nStruct malloc() fail");
 	ft_memset(data, 0, sizeof(t_data));
 	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4))
-		exit_process(data, "Error: invalid map file extension");
+		exit_process(data, "Error\nInvalid map file extension");
 	init_map(argv[1], data);
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		exit_process(data, "Error: mlx_init() fail");
+		exit_process(data, "Error\nFunction mlx_init() fail");
 	data->window = mlx_new_window(data->mlx,
 			data->width, data->height, "so_long");
 	if (!data->window)
-		exit_process(data, "Error: mlx_new_window() fail");
+		exit_process(data, "Error\nFunction mlx_new_window() fail");
 	setup_textures(data);
 	add_textures(data);
 	mlx_key_hook(data->window, key_hook, data);

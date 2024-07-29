@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:10:46 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 21:07:59 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 23:26:59 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*str_malloc_fill(t_data *data, int size)
 
 	str = (char *)malloc(size * sizeof(char));
 	if (!str)
-		exit_process(data, "Error: str malloc() fail");
+		exit_process(data, "Error\nString malloc() fail");
 	ft_memset(str, 0, size);
 	return (str);
 }
@@ -34,7 +34,7 @@ void	store_map(char *map_address, t_data *data, int i, int j)
 	str = str_malloc_fill(data, i * j + 1);
 	fd = open(map_address, O_RDONLY);
 	if (fd < 0)
-		exit_process(data, "Error: open() map file fail");
+		exit_process(data, "Error\nFunction open() map file fail");
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -43,7 +43,7 @@ void	store_map(char *map_address, t_data *data, int i, int j)
 			free(line);
 			free(str);
 			close(fd);
-			exit_process(data, "Error: str ft_strlcat() fail");
+			exit_process(data, "Error\nFunction ft_strlcat() fail");
 		}
 		free(line);
 		line = get_next_line(fd);
@@ -61,7 +61,7 @@ void	get_map_size(char *map_address, t_data *data, int *i, int *j)
 
 	fd = open(map_address, O_RDONLY);
 	if (fd < 0)
-		exit_process(data, "Error: open() map file fail");
+		exit_process(data, "Error\nFunction open() map file fail");
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -71,7 +71,7 @@ void	get_map_size(char *map_address, t_data *data, int *i, int *j)
 		{
 			free(line);
 			close(fd);
-			exit_process(data, "Error: map is not rectangular");
+			exit_process(data, "Error\nMap is not rectangular");
 		}
 		free(line);
 		line = get_next_line(fd);
@@ -94,10 +94,10 @@ void	init_map(char *map_address, t_data *data)
 	j_ptr = &j;
 	get_map_size(map_address, data, i_ptr, j_ptr);
 	if (i < 4 || j < 3)
-		exit_process(data, "Error: map is too small");
+		exit_process(data, "Error\nMap is too small");
 	store_map(map_address, data, i, j);
 	if (!data->map)
-		exit_process(data, "Error: ft_split() fail");
+		exit_process(data, "Error\nFunction ft_split() fail");
 	data->width = (i - 1) * TILE_SIZE;
 	data->height = j * TILE_SIZE;
 	validate_map(data, i - 1, j);

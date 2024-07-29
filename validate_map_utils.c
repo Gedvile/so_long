@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:22:30 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 21:09:00 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 23:34:03 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	validate_sprites(t_data *data)
 		i++;
 	}
 	if (player != 1 && exit != 1 && data->collectibles < 1)
-		exit_process(data, "Error: invalid amount of sprites in the map");
+		exit_process(data, "Error\nInvalid amount of sprites in the map");
 }
 
 // check if stored map has only valid characters and a valid wall
@@ -104,10 +104,10 @@ void	validate_chars_and_wall(t_data *data, int width, int height)
 			if (!(data->map[i][j] == '0' || data->map[i][j] == '1'
 				|| data->map[i][j] == 'P' || data->map[i][j] == 'C'
 				|| data->map[i][j] == 'E'))
-				exit_process(data, "Error: invalid character in the map");
+				exit_process(data, "Error\nInvalid character in the map");
 			if ((i == 0 || j == 0 || i == height - 1 || j == width - 1)
 				&& data->map[i][j] != '1')
-				exit_process(data, "Error: invalid walls in the map");
+				exit_process(data, "Error\nInvalid walls in the map");
 			j++;
 		}
 		i++;
@@ -139,5 +139,5 @@ void	validate_map(t_data *data, int width, int height)
 	}
 	flood_fill(data, data->player_loc[0], data->player_loc[1]);
 	if (!is_winable(data))
-		exit_process(data, "Error: game can not be won");
+		exit_process(data, "Error\nGame can not be won");
 }
