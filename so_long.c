@@ -6,19 +6,9 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 13:22:04 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:11:36 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-Arguments:
-	*.ber (map)
-Ext funcs:
-	- open, close, read, write, malloc, free, perror, strerror, exit
-	- minilibx library
-	- math library
-	- libft library
-*/
 
 #include "so_long.h"
 
@@ -52,7 +42,10 @@ void	exit_process(t_data *data, char *err_msg)
 		if (errno != 0)
 			perror(err_msg);
 		else
+		{
 			ft_putstr_fd(err_msg, 2);
+			ft_putchar_fd('\n', 2);
+		}
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -71,27 +64,27 @@ void	setup_textures(t_data *data)
 	data->img[0] = mlx_xpm_file_to_image(data->mlx, data->img_addr[0],
 			&data->img_width[0], &data->img_height[0]);
 	if (!(data->img[0]))
-		exit_process(data, "Error: mlx_xpm_file_to_image() background fail\n");
+		exit_process(data, "Error: mlx_xpm_file_to_image() background fail");
 	data->img_addr[1] = "./textures/wall.xpm";
 	data->img[1] = mlx_xpm_file_to_image(data->mlx, data->img_addr[1],
 			&data->img_width[1], &data->img_height[1]);
 	if (!(data->img[1]))
-		exit_process(data, "Error: mlx_xpm_file_to_image() wall fail\n");
+		exit_process(data, "Error: mlx_xpm_file_to_image() wall fail");
 	data->img_addr[2] = "./textures/player.xpm";
 	data->img[2] = mlx_xpm_file_to_image(data->mlx, data->img_addr[2],
 			&data->img_width[2], &data->img_height[2]);
 	if (!(data->img[2]))
-		exit_process(data, "Error: mlx_xpm_file_to_image() player fail\n");
+		exit_process(data, "Error: mlx_xpm_file_to_image() player fail");
 	data->img_addr[3] = "./textures/collectible.xpm";
 	data->img[3] = mlx_xpm_file_to_image(data->mlx, data->img_addr[3],
 			&data->img_width[3], &data->img_height[3]);
 	if (!(data->img[3]))
-		exit_process(data, "Error: mlx_xpm_file_to_image() collectible fail\n");
+		exit_process(data, "Error: mlx_xpm_file_to_image() collectible fail");
 	data->img_addr[4] = "./textures/exit.xpm";
 	data->img[4] = mlx_xpm_file_to_image(data->mlx, data->img_addr[4],
 			&data->img_width[4], &data->img_height[4]);
 	if (!(data->img[4]))
-		exit_process(data, "Error: mlx_xpm_file_to_image() exit fail\n");
+		exit_process(data, "Error: mlx_xpm_file_to_image() exit fail");
 }
 
 // 0 - background, 1 - wall, 2 - player, 3 - collectible, 4 - exit
@@ -130,31 +123,23 @@ void	add_textures(t_data *data)
 int	main(int argc, char *argv[])
 {
 	t_data	*data;
-	int		i;
 
 	if (argc != 2)
-		exit_process(NULL, "Error: invalid number of arguments\n");
+		exit_process(NULL, "Error: invalid number of arguments");
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
-		exit_process(data, "Error: data malloc() fail\n");
+		exit_process(data, "Error: data malloc() fail");
 	ft_memset(data, 0, sizeof(t_data));
 	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4))
-		exit_process(data, "Error: invalid map file\n");
+		exit_process(data, "Error: invalid map file");
 	init_map(argv[1], data);
-	ft_printf("Final map:\n");
-	i = 0;
-	while (data->map && data->map[i])
-		ft_printf("%s\n", data->map[i++]);
-	ft_printf("\nCollectibles: %d\n", data->collectibles);
-	ft_printf("Player address: %d, %d\n\n", data->player_loc[1],
-		data->player_loc[0]);
 	data->mlx = mlx_init();
 	if (!(data->mlx))
-		exit_process(data, "Error: mlx_init() fail\n");
+		exit_process(data, "Error: mlx_init() fail");
 	data->window = mlx_new_window(data->mlx,
 			data->width, data->height, "so_long");
 	if (!(data->window))
-		exit_process(data, "Error: mlx_new_window() fail\n");
+		exit_process(data, "Error: mlx_new_window() fail");
 	setup_textures(data);
 	add_textures(data);
 	mlx_key_hook(data->window, key_hook, data);
