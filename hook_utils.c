@@ -6,11 +6,18 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:11:15 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 19:13:35 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/30 00:30:00 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+// mouse hook on window exit button
+int	mouse_hook(t_data *data)
+{
+	exit_process(data, NULL);
+	return (0);
+}
 
 // adjust player location variable
 void	change_player_loc(t_data *data, char direction)
@@ -76,9 +83,3 @@ int	key_hook(int keycode, t_data *data)
 	return (0);
 }
 
-// mouse hook on window exit button
-int	mouse_hook(t_data *data)
-{
-	exit_process(data, NULL);
-	return (0);
-}

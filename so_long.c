@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/30 00:04:27 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/30 00:20:55 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	exit_process(t_data *data, char *err_msg)
 	message_and_exit(err_msg);
 }
 
-// init data struct, setup map, mlx server, window, textures, hooks, loop
+// init data struct, setup map, mlx server, window, textures, hooks and loop
 int	main(int argc, char *argv[])
 {
 	t_data	*data;
@@ -81,8 +81,8 @@ int	main(int argc, char *argv[])
 	if (!data->window)
 		exit_process(data, "Error\nFunction mlx_new_window() fail");
 	setup_textures(data);
-	mlx_key_hook(data->window, key_hook, data);
 	mlx_hook(data->window, 17, 0, mouse_hook, data);
+	mlx_key_hook(data->window, key_hook, data);
 	mlx_loop(data->mlx);
 	exit_process(data, NULL);
 	return (0);

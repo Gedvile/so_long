@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:56:26 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 23:57:13 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/30 00:28:28 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	put_image_to_window(t_data *data, int i, int j, int nr)
 }
 
 // add textures to the window for rendering
-void	add_textures(t_data *data)
+void	add_textures_to_window(t_data *data)
 {
 	int	i;
 	int	j;
@@ -69,5 +69,5 @@ void	setup_textures(t_data *data)
 	if (data->img[0] == NULL || data->img[1] == NULL || data->img[2] == NULL
 		|| data->img[3] == NULL || data->img[4] == NULL)
 		exit_process(data, "Error\nFunction mlx_xpm_file_to_image() fail");
-	add_textures(data);
+	add_textures_to_window(data);
 }
