@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:29:26 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 17:02:06 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:24:26 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ typedef struct s_data
 /* so_long.c **************************************************************** */
 void	exit_process(t_data *data, char *err_msg);
 
-/* map_utils.c ************************************************************** */
+/* read_map_utils.c ********************************************************* */
 void	init_map(char *map_address, t_data *data);
+
+/* validate_map_utils.c ***************************************************** */
+void	validate_map(t_data *data, int width, int height);
 
 /* texture_utils.c ********************************************************** */
 void	setup_textures(t_data *data);
