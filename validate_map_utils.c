@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:22:30 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/30 01:27:57 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/30 01:37:43 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ void	flood_fill(t_data *data, int i, int j)
 	if (i < 0 || i >= data->height / TILE_SIZE
 		|| j < 0 || j >= data->width / TILE_SIZE)
 		return ;
-	if (data->map[i][j] == '1'
-		|| (data->map[i][j] >= 'a' && data->map[i][j] <= 'z'))
+	if (ft_strchr("o1pce", data->map[i][j]) != NULL)
 		return ;
 	if (data->map[i][j] >= 'A' && data->map[i][j] <= 'Z')
 		data->map[i][j] = ft_tolower(data->map[i][j]);
