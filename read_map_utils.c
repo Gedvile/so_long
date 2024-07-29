@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:10:46 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 19:28:20 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 21:07:59 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	get_map_size(char *map_address, t_data *data, int *i, int *j)
 	close(fd);
 }
 
-// initiate map reading and validating, set window size according to the map
+// initiate map reading, set window size according to map, send map to validate
 void	init_map(char *map_address, t_data *data)
 {
 	int	i;
