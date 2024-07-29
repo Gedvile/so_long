@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:11:15 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 16:25:01 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 19:13:35 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	move_player(t_data *data, char direction)
 	if (data->map[data->player_loc[0]][data->player_loc[1]] == 'E'
 		&& data->collectibles == 0)
 	{
-		ft_printf("Game won!");
+		ft_printf("GAME WON!\n");
 		exit_process(data, NULL);
 	}
 	mlx_put_image_to_window(data->mlx, data->window, data->img[2],
