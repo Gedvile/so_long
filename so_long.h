@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:29:26 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 17:24:26 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 19:35:22 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@
 typedef struct s_data
 {
 	void	*mlx;
+	char	**map;
 	void	*window;
 	int		width;
 	int		height;
-	char	**map;
 	void	*img[5];
 	char	*img_addr[5];
 	int		img_width[5];
 	int		img_height[5];
-	int		player_loc[2]; // [0] - height, [1] - width
+	int		player_loc[2];	// [0] - height, [1] - width
 	int		collectibles;
 	int		moves;
 }	t_data;

@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:10:46 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 19:25:48 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 19:28:20 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*str_malloc_fill(t_data *data, int size)
 }
 
 // read map file to store the map into the game struct
-void	read_map(char *map_address, t_data *data, int i, int j)
+void	store_map(char *map_address, t_data *data, int i, int j)
 {
 	int		fd;
 	char	*line;
@@ -95,7 +95,7 @@ void	init_map(char *map_address, t_data *data)
 	get_map_size(map_address, data, i_ptr, j_ptr);
 	if (i < 4 || j < 3)
 		exit_process(data, "Error: map is too small");
-	read_map(map_address, data, i, j);
+	store_map(map_address, data, i, j);
 	if (!data->map)
 		exit_process(data, "Error: ft_split() fail");
 	data->width = (i - 1) * TILE_SIZE;

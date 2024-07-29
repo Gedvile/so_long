@@ -6,14 +6,14 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:22:30 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 17:25:58 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 19:36:47 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 // check if after flood_fill() there are any sprites left
-// also change the flood_fill() modified values back to original state
+// and change the flood_fill() modified values back to original state
 int	is_winable(t_data *data)
 {
 	int	i;
