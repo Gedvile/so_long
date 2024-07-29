@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/30 00:20:55 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/30 00:34:15 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	main(int argc, char *argv[])
 		exit_process(NULL, "Error\nInvalid map file extension");
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
-		exit_process(data, "Error\nStruct malloc() fail");
+		exit_process(NULL, "Error\nStruct malloc() fail");
 	ft_memset(data, 0, sizeof(t_data));
 	init_map(argv[1], data);
 	data->mlx = mlx_init();
