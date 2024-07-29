@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:10:46 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 15:06:18 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:21:32 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void	read_map(char *map_address, t_data *data, int i, int j)
 	close(fd);
 	data->map = ft_split(tmp, '\n');
 	free(tmp);
-	if (!(data->map))
+	if (!data->map)
 		exit_process(data, "Error: ft_split() fail");
 	data->width = (i - 1) * TILE_SIZE;
 	data->height = j * TILE_SIZE;

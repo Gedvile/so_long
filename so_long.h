@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:29:26 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 13:10:13 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:54:40 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ void	init_map(char *map_address, t_data *data);
 
 /* moves_utils.c ************************************************************ */
 int		key_hook(int keycode, t_data *data);
+int		mouse_hook(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 15:11:36 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:54:46 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,42 +52,35 @@ void	exit_process(t_data *data, char *err_msg)
 		exit(EXIT_SUCCESS);
 }
 
-int	mouse_exit(t_data *data)
-{
-	exit_process(data, NULL);
-	return (0);
-}
-
 void	setup_textures(t_data *data)
 {
 	data->img_addr[0] = "./textures/background.xpm";
 	data->img[0] = mlx_xpm_file_to_image(data->mlx, data->img_addr[0],
 			&data->img_width[0], &data->img_height[0]);
-	if (!(data->img[0]))
+	if (!data->img[0])
 		exit_process(data, "Error: mlx_xpm_file_to_image() background fail");
 	data->img_addr[1] = "./textures/wall.xpm";
 	data->img[1] = mlx_xpm_file_to_image(data->mlx, data->img_addr[1],
 			&data->img_width[1], &data->img_height[1]);
-	if (!(data->img[1]))
+	if (!data->img[1])
 		exit_process(data, "Error: mlx_xpm_file_to_image() wall fail");
 	data->img_addr[2] = "./textures/player.xpm";
 	data->img[2] = mlx_xpm_file_to_image(data->mlx, data->img_addr[2],
 			&data->img_width[2], &data->img_height[2]);
-	if (!(data->img[2]))
+	if (!data->img[2])
 		exit_process(data, "Error: mlx_xpm_file_to_image() player fail");
 	data->img_addr[3] = "./textures/collectible.xpm";
 	data->img[3] = mlx_xpm_file_to_image(data->mlx, data->img_addr[3],
 			&data->img_width[3], &data->img_height[3]);
-	if (!(data->img[3]))
+	if (!data->img[3])
 		exit_process(data, "Error: mlx_xpm_file_to_image() collectible fail");
 	data->img_addr[4] = "./textures/exit.xpm";
 	data->img[4] = mlx_xpm_file_to_image(data->mlx, data->img_addr[4],
 			&data->img_width[4], &data->img_height[4]);
-	if (!(data->img[4]))
+	if (!data->img[4])
 		exit_process(data, "Error: mlx_xpm_file_to_image() exit fail");
 }
 
-// 0 - background, 1 - wall, 2 - player, 3 - collectible, 4 - exit
 void	add_textures(t_data *data)
 {
 	int	i;
@@ -134,16 +127,16 @@ int	main(int argc, char *argv[])
 		exit_process(data, "Error: invalid map file");
 	init_map(argv[1], data);
 	data->mlx = mlx_init();
-	if (!(data->mlx))
+	if (!data->mlx)
 		exit_process(data, "Error: mlx_init() fail");
 	data->window = mlx_new_window(data->mlx,
 			data->width, data->height, "so_long");
-	if (!(data->window))
+	if (!data->window)
 		exit_process(data, "Error: mlx_new_window() fail");
 	setup_textures(data);
 	add_textures(data);
 	mlx_key_hook(data->window, key_hook, data);
-	mlx_hook(data->window, 17, 0, mouse_exit, data);
+	mlx_hook(data->window, 17, 0, mouse_hook, data);
 	mlx_loop(data->mlx);
 	exit_process(data, NULL);
 	return (0);
