@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:22:30 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 23:34:03 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/30 00:56:42 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,14 +126,13 @@ void	validate_map(t_data *data, int width, int height)
 	while (data->map[i])
 	{
 		j = 0;
-		while (data->map[i][j])
-		{
-			if (data->map[i][j] == 'P')
-			{
-				data->player_loc[0] = i;
-				data->player_loc[1] = j;
-			}
+		while (data->map[i][j] && data->map[i][j] != 'P')
 			j++;
+		if (data->map[i][j] && data->map[i][j] == 'P')
+		{
+			data->player_loc[0] = i;
+			data->player_loc[1] = j;
+			break ;
 		}
 		i++;
 	}
