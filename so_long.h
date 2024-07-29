@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:29:26 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 15:54:40 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:02:06 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,14 @@ typedef struct s_data
 /* so_long.c **************************************************************** */
 void	exit_process(t_data *data, char *err_msg);
 
-/* maps_utils.c ************************************************************* */
+/* map_utils.c ************************************************************** */
 void	init_map(char *map_address, t_data *data);
 
-/* moves_utils.c ************************************************************ */
+/* texture_utils.c ********************************************************** */
+void	setup_textures(t_data *data);
+void	add_textures(t_data *data);
+
+/* hook_utils.c ************************************************************* */
 int		key_hook(int keycode, t_data *data);
 int		mouse_hook(t_data *data);
 

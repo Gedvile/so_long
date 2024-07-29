@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:11:15 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 16:10:32 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:25:01 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	key_hook(int keycode, t_data *data)
 	return (0);
 }
 
-// mouse hook on exit button
+// mouse hook on window exit button
 int	mouse_hook(t_data *data)
 {
 	exit_process(data, NULL);

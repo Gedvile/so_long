@@ -6,7 +6,7 @@
 #    By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 16:07:45 by gklimasa          #+#    #+#              #
-#    Updated: 2024/07/29 15:55:33 by gklimasa         ###   ########.fr        #
+#    Updated: 2024/07/29 17:01:02 by gklimasa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ LIBFT		=	-L$(LIBFT_DIR) -lft
 
 # FILE NAMES ***************************************************************** #
 SRCS		=	so_long.c \
-				maps_utils.c \
+				map_utils.c \
+				texture_utils.c \
 				hook_utils.c
 
 OBJS		=	$(SRCS:.c=.o)
