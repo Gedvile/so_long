@@ -6,11 +6,33 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:10:46 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/29 00:11:21 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 11:57:22 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	change_back(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (data->map && data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (data->map[i][j] == 'o')
+				data->map[i][j] = '0';
+			else if (data->map[i][j] == 'p' || data->map[i][j] == 'c'
+				|| data->map[i][j] == 'e')
+				data->map[i][j] = ft_toupper(data->map[i][j]);
+			j++;
+		}
+		i++;
+	}
+}
 
 int	is_winable(t_data *data)
 {
@@ -73,7 +95,7 @@ void	check_path(t_data *data)
 
 	if (!is_winable(data))
 		exit_process(data, "Error: game is not winable\n");
-
+	change_back(data);
 }
 
 void	validate_map(t_data *data, int width, int height)

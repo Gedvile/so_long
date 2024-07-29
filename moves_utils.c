@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:11:15 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/28 17:41:06 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/29 12:02:01 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void	move_player(t_data *data, char direction)
 	if (data->map[data->player_loc[0]][data->player_loc[1]] == 'E')
 	{
 		if (data->collectibles == 0)
+		{
 			ft_printf("[ ] Game won!!!\n");
+			exit_process(data, NULL);
+		}
 		else
 			ft_printf("[ ] Collectibles left: %d\n", data->collectibles);
 	}
