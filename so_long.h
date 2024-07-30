@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:29:26 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/30 00:02:57 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/30 07:26:20 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,23 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>
+# include <X11/keysym.h>
 
 /* DEFINES ****************************************************************** */
 # define TILE_SIZE 64
 # define IMG_COUNT 5
+# define BGR_FILE "./textures/background.xpm"
+# define WALL_FILE "./textures/wall.xpm"
+# define C_FILE "./textures/collectible.xpm"
+# define E_FILE "./textures/exit.xpm"
+# define P_FILE "./textures/player.xpm"
+# define BGR_IMG 0
+# define WALL_IMG 1
+# define C_IMG 2
+# define E_IMG 3
+# define P_IMG 4
+# define Y 0
+# define X 1
 
 /* STRUCTS ****************************************************************** */
 typedef struct s_data
