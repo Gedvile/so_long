@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:22:30 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/30 07:27:30 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:15:19 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	validate_sprites(t_data *data)
 		}
 		i++;
 	}
-	if (player != 1 && exit != 1 && data->collectibles < 1)
+	if (!(player == 1 && exit == 1) || data->collectibles < 1)
 		exit_process(data, "Error\nInvalid amount of sprites in the map");
 }
 
@@ -131,7 +131,7 @@ void	validate_map(t_data *data, int width, int height)
 		}
 		i++;
 	}
-	flood_fill(data, data->player_loc[0], data->player_loc[1]);
+	flood_fill(data, data->player_loc[Y], data->player_loc[X]);
 	if (!is_winable(data))
 		exit_process(data, "Error\nGame can not be won");
 }

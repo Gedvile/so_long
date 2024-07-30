@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:11:15 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/30 14:31:34 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/30 14:55:15 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	move_player(t_data *data, char direction)
 		exit_process(data, NULL);
 	}
 	mlx_put_image_to_window(data->mlx, data->window, data->img[P_IMG],
-		data->player_loc[1] * TILE_SIZE, data->player_loc[0] * TILE_SIZE);
+		data->player_loc[X] * TILE_SIZE, data->player_loc[Y] * TILE_SIZE);
 	ft_printf("Moves: %d\n", ++data->moves);
 }
 

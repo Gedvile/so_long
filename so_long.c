@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:29 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/30 01:47:02 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/30 14:57:44 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	main(int argc, char *argv[])
 	if (!data->window)
 		exit_process(data, "Error\nFunction mlx_new_window() fail");
 	setup_textures(data);
-	mlx_hook(data->window, 17, 0, mouse_hook, data);
+	mlx_hook(data->window, DestroyNotify, 0, mouse_hook, data);
 	mlx_key_hook(data->window, key_hook, data);
 	mlx_loop(data->mlx);
 	exit_process(data, NULL);
