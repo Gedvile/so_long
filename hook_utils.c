@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 12:11:15 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/30 07:32:03 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/30 14:31:34 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,3 @@ int	key_hook(int keycode, t_data *data)
 		move_player(data, 'd');
 	return (0);
 }
-

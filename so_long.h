@@ -6,7 +6,7 @@
 /*   By: gklimasa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:29:26 by gklimasa          #+#    #+#             */
-/*   Updated: 2024/07/30 07:26:20 by gklimasa         ###   ########.fr       */
+/*   Updated: 2024/07/30 14:30:24 by gklimasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_data
 	char	*img_addr[IMG_COUNT];
 	int		img_width[IMG_COUNT];
 	int		img_height[IMG_COUNT];
-	int		player_loc[2];	// [0] - height, [1] - width
+	int		player_loc[2];
 	int		collectibles;
 	int		moves;
 }	t_data;
